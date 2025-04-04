@@ -30,7 +30,7 @@ app.post("/create",(req,res)=>{
       description,
     }
     TODOs.push(todo);
-    res.status(200).json({todo});
+    res.status(200).json({TODOs});
   } catch (error) {
     res.status(400).json({message:error.message});
   }
@@ -49,7 +49,7 @@ app.put("/update/:id",(req,res)=>{
 
     TODOs[TODOs.findIndex(todo)] = updatedTodo;
 
-    res.status(200).json({updatedTodo});
+    res.status(200).json({TODOs});
   } catch (error) {
     res.status(400).json({message:error.message});
   }
@@ -61,7 +61,7 @@ app.delete("/delete/:id",(req,res)=>{
     const todo = TODOs.find((t)=>{return t.id==id})
 
     TODOs.splice(TODOs.findIndex(todo),1);
-    res.status(200).json({todo});
+    res.status(200).json({TODOs});
   } catch (error) {
     res.status(400).json({message:error.message});
     
