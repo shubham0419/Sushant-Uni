@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
     required:true,
     trim:true
   },
-  categories:{
+  category:{
     type:String
   },
   productType:{
@@ -24,11 +24,11 @@ const productSchema = new mongoose.Schema({
     required:true,
     min:0
   },
-  sizes:{
+  size:{
     type:String,
     enum:["XS","S","M","L","XL","XXl","XXXl"],
   },
-  colors:{
+  color:{
     type:String
   },
   gender:{
