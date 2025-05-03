@@ -1,50 +1,13 @@
 const express = require("express");
-const Product = require("../model/produt.model");
+const { allProducts, createProduct, updateProduct, deleteProduct } = require("../controller/product.controller");
 const router = express.Router();
 
-router.post("/create",async(req,res)=>{
-  try {
-    const {name,productType,price,quantity,category,size,color,gender,wearType} = req.body;
+router.get("/all",allProducts)
 
-    const product = await Product.create({
-      name,
-      price,
-      quantity,
-      productType,
-      color,
-      gender,
-      wearType,
-      category,
-      size
-    });
+router.post("/create",createProduct);
 
-    res.status(200).json({message:"product Created Successfully",product});
-  } catch (error) {
-    res.status(400).json({message:error.message})
-  }
-});
+router.post("/update/:id",updateProduct);
 
-router.post("/update/:id",async(req,res)=>{
-  try {
-    const {id} = req.params;
-    const updatedProduct = await Product.findByIdAndUpdate(id,req.body);
-
-    res.status(200).json({message:"product Updated Successfully",updatedProduct});
-  } catch (error) {
-    res.status(400).json({message:error.message})
-  }
-});
-
-router.post("/delete/:id",async(req,res)=>{
-  try {
-    const {id} = req.params;
-    const deletedproduct = await Product.findByIdAndDelete(id);
-
-    res.status(200).json({message:"product Deleted Successfully",deletedproduct});
-  } catch (error) {
-    res.status(400).json({message:error.message})
-  }
-});
-
+router.post("/delete/:id",deleteProduct);
 
 module.exports = router;
