@@ -7,10 +7,24 @@ const isLoggedIn = async(req,res,next)=>{
     if(!decode){
       return res.status(403).json({message:"unauthorized"})
     }
+    req.user = decode;
     next();
   } catch (error) {
     res.status(403).json({message:error.message})
   }
 }
 
-module.exports = isLoggedIn
+const isAdmin = async(req,res,next)=>{
+  try {
+    const role = req.user.role;
+
+    if(role !== "admin"){
+      return res.status(403).json({message:"you are not Authorized"});
+    }
+    next();
+  } catch (error) {
+    res.status(403).json({message:error.message})
+  }
+}
+
+module.exports = {isLoggedIn,isAdmin}

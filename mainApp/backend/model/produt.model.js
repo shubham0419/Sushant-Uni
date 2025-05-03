@@ -19,7 +19,7 @@ const productSchema = new mongoose.Schema({
     required:true,
     min:0
   },
-  quntity:{
+  quantity:{
     type:Number,
     required:true,
     min:0
@@ -33,7 +33,7 @@ const productSchema = new mongoose.Schema({
   },
   gender:{
     type:String,
-    enum:["male","female"]
+    enum:["male","female","both"]
   },
   wearType:{
     type:String,
@@ -45,7 +45,7 @@ const productSchema = new mongoose.Schema({
       default:false
     },
     discountPercentage:{
-      typt:Number,
+      type:Number,
       default:0
     },
     discountAmount:{
