@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const User = require("./user.model");
 
 const productSchema = new mongoose.Schema({
   name:{
@@ -52,6 +53,10 @@ const productSchema = new mongoose.Schema({
       type:Number,
       default:0
     }
+  },
+  createdBy:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"User"
   }
 },
 {

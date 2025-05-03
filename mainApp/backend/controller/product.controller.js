@@ -24,7 +24,8 @@ const createProduct = async(req,res)=>{
       gender,
       wearType,
       category,
-      size
+      size,
+      createdBy:req.user._id,
     });
 
     res.status(200).json({message:"product Created Successfully",product});

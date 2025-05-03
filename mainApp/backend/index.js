@@ -10,6 +10,7 @@ const authRouter = require("./routes/auth.route");
 const userRouter = require("./routes/user.routes");
 const productRouter = require("./routes/product.routes");
 const {isLoggedIn} = require("./middleware");
+
 // middlewares
 app.use(cors());
 app.use(express.json());
