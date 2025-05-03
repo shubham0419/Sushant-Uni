@@ -10,6 +10,7 @@ const login = async(req,res)=>{
     }
 
     const user = await User.findOne({email}).select('+password');
+
     if(!user){
       res.status(401).json({message:"email or password is invalid"});
     }
@@ -20,8 +21,10 @@ const login = async(req,res)=>{
     }
 
     const userAgain = await User.findOne({email});
+
     const token = jwt.sign({name:user.name,email:user.email,role:user.role,_id:user._id}
       ,process.env.JWT_SECRET,{expiresIn:"7d"})
+      
     res.status(200).json({message:"user logged in successfully",userAgain,token});
   } catch (error) {
     res.status(403).json({message:error.message})
@@ -48,6 +51,7 @@ const register = async(req,res)=>{
 
     const token = jwt.sign({name:user.name,email:user.email,role:user.role,_id:user._id}
       ,process.env.JWT_SECRET,{expiresIn:"7d"})
+
     res.status(200).json({message:"user registered successfully",user,token});
   } catch (error) {
     console.log(error);
