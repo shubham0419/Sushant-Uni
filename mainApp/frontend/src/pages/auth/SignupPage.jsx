@@ -151,31 +151,6 @@ export default function SignupPage() {
             </button>
           </form>
 
-          <div className="auth-divider">
-            <span>OR</span>
-          </div>
-
-          <div className="social-login">
-            <button className="social-button google">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
-                <path
-                  fill="currentColor"
-                  d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1.086-9.212l4.17-2.388c.23-.132.23-.458 0-.59l-4.17-2.388c-.247-.142-.537.09-.537.296v4.774c0 .206.29.437.537.296z"
-                />
-              </svg>
-              <span>Sign up with Google</span>
-            </button>
-            <button className="social-button facebook">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
-                <path
-                  fill="currentColor"
-                  d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1.086-9.212l4.17-2.388c.23-.132.23-.458 0-.59l-4.17-2.388c-.247-.142-.537.09-.537.296v4.774c0 .206.29.437.537.296z"
-                />
-              </svg>
-              <span>Sign up with Facebook</span>
-            </button>
-          </div>
-
           <div className="auth-footer">
             <p>
               Already have an account?{" "}

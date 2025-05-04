@@ -38,6 +38,7 @@ const register = async(req,res)=>{
     if(isExist){
       return res.status(400).json({message:"user with this email already exist"})
     }
+    
     const hashpass = await bcrypt.hash(password,10);
 
     const user = await User.create({
