@@ -1,34 +1,96 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { AuthProvider } from "./context/AuthContext"
+import ProtectedRoute from "./components/ProtectedRoute"
+import Navbar from "./components/Navbar"
+import Home from "./pages/Home"
+import CategoriesPage from "./pages/Categories"
+import NewArrivalsPage from "./pages/NewArrivalsPage"
+import SalesPage from "./pages/SalesPage"
+import ContactPage from "./pages/ContactPage"
+import CartPage from "./pages/CartPage"
+import WishlistPage from "./pages/WishListPage"
+import LoginPage from "./pages/auth/LoginPage"
+import SignupPage from "./pages/auth/SignupPage"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+
+          {/* Routes with Navbar */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Navbar />
+                <Home />
+              </>
+            }
+          />
+          <Route
+            path="/categories"
+            element={
+              <>
+                <Navbar />
+                <CategoriesPage />
+              </>
+            }
+          />
+          <Route
+            path="/new-arrivals"
+            element={
+              <>
+                <Navbar />
+                <NewArrivalsPage />
+              </>
+            }
+          />
+          <Route
+            path="/sales"
+            element={
+              <>
+                <Navbar />
+                <SalesPage />
+              </>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <>
+                <Navbar />
+                <ContactPage />
+              </>
+            }
+          />
+
+          {/* Protected Routes */}
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <Navbar />
+                <CartPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/wishlist"
+            element={
+              <ProtectedRoute>
+                <Navbar />
+                <WishlistPage />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
 
