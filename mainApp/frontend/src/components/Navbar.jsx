@@ -3,7 +3,9 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Search, ShoppingCart, Menu, X, User, Heart, LogOut } from "lucide-react"
+import Cookies from "js-cookie";
 import "./Navbar.css"
+import { logoutUser } from "../services/api/auth";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -12,7 +14,7 @@ export default function Navbar() {
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false)
   const [showUserDropdown, setShowUserDropdown] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const user = null;
+  const user = Cookies.get("token") || null;
   const navigate = useNavigate()
 
   const toggleMenu = () => {
@@ -36,7 +38,8 @@ export default function Navbar() {
   }
 
   const handleLogout = async () => {
-    
+    logoutUser()
+    navigate("/login");
     setShowUserDropdown(false)
   }
 
@@ -131,7 +134,7 @@ export default function Navbar() {
                 <div className="user-dropdown">
                   {user ? (
                     <>
-                      <div className="user-info">
+                      {/* <div className="user-info">
                         <span className="user-name">{user.name || user.email}</span>
                         <span className="user-email">{user.email}</span>
                       </div>
@@ -141,7 +144,7 @@ export default function Navbar() {
                       </Link>
                       <Link to="/orders" className="dropdown-item">
                         My Orders
-                      </Link>
+                      </Link> */}
                       <button onClick={handleLogout} className="dropdown-item logout-item">
                         <LogOut size={16} />
                         <span>Logout</span>
@@ -218,11 +221,11 @@ export default function Navbar() {
           <div className="mobile-user-actions">
             {user ? (
               <>
-                <div className="mobile-user-info">
+                {/* <div className="mobile-user-info">
                   <span>Hello, {user.name || user.email.split("@")[0]}</span>
-                </div>
+                </div> */}
                 <div className="mobile-action-buttons">
-                  <Link to="/profile" className="mobile-action-link" onClick={() => setIsMenuOpen(false)}>
+                  {/* <Link to="/profile" className="mobile-action-link" onClick={() => setIsMenuOpen(false)}>
                     <User />
                     <span>Profile</span>
                   </Link>
@@ -233,7 +236,7 @@ export default function Navbar() {
                   <Link to="/cart" className="mobile-action-link" onClick={() => setIsMenuOpen(false)}>
                     <ShoppingCart />
                     <span>Cart ({cartCount})</span>
-                  </Link>
+                  </Link> */}
                   <button onClick={handleLogout} className="mobile-action-link logout-button">
                     <LogOut size={18} />
                     <span>Logout</span>
