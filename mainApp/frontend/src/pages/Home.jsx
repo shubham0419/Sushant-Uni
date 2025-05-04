@@ -1,18 +1,25 @@
-import { useEffect, useState } from "react"
-import "./pages.css"
+import { useEffect, useState } from "react";
+import "./pages.css";
 import { getAllProducts } from "../services/api/product";
 
 export default function Home() {
-  const [allProducts,setAllproducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const fetchProduct = async()=>{
-    let products = await getAllProducts();
-    setAllproducts(products);
-  }
+  const fetchProduct = async() => {
+    try {
+      let products = await getAllProducts();
+      setAllProducts(products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchProduct();
-  },[])
+  }, []);
 
   return (
     <div className="page">
@@ -27,21 +34,49 @@ export default function Home() {
       <div className="container">
         <section className="featured-section">
           <h2>Featured Products</h2>
-          <div className="product-grid">
-            {allProducts.map((product) => (
-              <div className="product-card" key={product._id}>
-                <div className="product-image">
-                  <img src={product.image ?? "https://rakanonline.com/wp-content/uploads/2022/08/default-product-image.png"} alt={product.name} />
+          {loading ? (
+            <div className="loading-container">
+              <div className="loading-spinner"></div>
+              <p>Loading products...</p>
+            </div>
+          ) : allProducts.length === 0 ? (
+            <div className="empty-state">
+              <h2>No products found</h2>
+              <p>Check back soon for our latest products!</p>
+            </div>
+          ) : (
+            <div className="product-grid">
+              {allProducts.map((product) => (
+                <div className="product-card" key={product._id}>
+                  <div className="product-image">
+                    <img 
+                      src={product.image || "/api/placeholder/250/220"} 
+                      alt={product.name} 
+                    />
+                    {product.isNew && <span className="product-badge">New</span>}
+                    {product.onSale && <span className="sale-badge">Sale</span>}
+                  </div>
+                  <div className="product-info">
+                    <span className="product-category">{product.category}</span>
+                    <h3 className="product-name">{product.name}</h3>
+                    <div className="price-container">
+                      {product.onSale ? (
+                        <>
+                          <span className="original-price">${product.price.toFixed(2)}</span>
+                          <span className="sale-price">${(product.price * 0.8).toFixed(2)}</span>
+                        </>
+                      ) : (
+                        <span className="product-price">${product.price.toFixed(2)}</span>
+                      )}
+                    </div>
+                    <button className="add-to-cart">
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
-                <div className="product-info">
-                  <span className="product-category">{product.category}</span>
-                  <h3 className="product-name">{product.name}</h3>
-                  <span className="product-price">${product.price}</span>
-                  <button className="add-to-cart">Add to Cart</button>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </section>
 
         <section className="categories-section">
@@ -67,5 +102,5 @@ export default function Home() {
         </section>
       </div>
     </div>
-  )
+  );
 }
