@@ -355,6 +355,26 @@ section h2::after {
   color: #ef4444;
 }
 
+.category-grid{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:10px
+}
+
+.category-card{
+  gap:10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-card > img{
+  height: 100%;
+  width: 100%;
+}
+
+
 /* Empty State */
 .empty-state {
   text-align: center;
@@ -507,6 +527,8 @@ section h2::after {
   top: 2rem;
   animation: fadeIn 0.5s ease 0.2s both;
 }
+
+
 
 .cart-summary h2 {
   font-size: 1.5rem;

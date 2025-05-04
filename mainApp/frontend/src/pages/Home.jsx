@@ -83,19 +83,19 @@ export default function Home() {
           <h2>Shop By Category</h2>
           <div className="category-grid">
             <div className="category-card">
-              <img src="/api/placeholder/400/250" alt="Running" />
+              <img src="https://images.unsplash.com/photo-1594882645126-14020914d58d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Running" />
               <h3>Running</h3>
             </div>
             <div className="category-card">
-              <img src="/api/placeholder/400/250" alt="Basketball" />
+              <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Basketball" />
               <h3>Basketball</h3>
             </div>
             <div className="category-card">
-              <img src="/api/placeholder/400/250" alt="Football" />
+              <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?q=80&w=3149&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Football" />
               <h3>Football</h3>
             </div>
             <div className="category-card">
-              <img src="/api/placeholder/400/250" alt="Tennis" />
+              <img src="https://images.unsplash.com/photo-1595435742656-5272d0b3fa82?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHRlbm5pc3xlbnwwfHwwfHx8MA%3D%3D" alt="Tennis" />
               <h3>Tennis</h3>
             </div>
           </div>
