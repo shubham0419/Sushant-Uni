@@ -53,17 +53,17 @@ export default function Home() {
                       src={product.image || "/api/placeholder/250/220"} 
                       alt={product.name} 
                     />
-                    {product.isNew && <span className="product-badge">New</span>}
-                    {product.onSale && <span className="sale-badge">Sale</span>}
+                    {/* {product.isNew && <span className="product-badge">New</span>} */}
+                    {product.sale.live && <span className="sale-badge">Sale</span>}
                   </div>
                   <div className="product-info">
                     <span className="product-category">{product.category}</span>
                     <h3 className="product-name">{product.name}</h3>
                     <div className="price-container">
-                      {product.onSale ? (
+                      {product.sale.live ? (
                         <>
                           <span className="original-price">${product.price.toFixed(2)}</span>
-                          <span className="sale-price">${(product.price * 0.8).toFixed(2)}</span>
+                          <span className="sale-price">${(product.price - (product.sale.discountPercentage?(product.sale.discountPercentag*product.pricee/100):product.sale.discountAmount)).toFixed(2)}</span>
                         </>
                       ) : (
                         <span className="product-price">${product.price.toFixed(2)}</span>
