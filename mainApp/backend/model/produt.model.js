@@ -10,6 +10,10 @@ const productSchema = new mongoose.Schema({
   category:{
     type:String
   },
+  image:{
+    type:String,
+    default:"https://rakanonline.com/wp-content/uploads/2022/08/default-product-image.png"
+  },
   productType:{
     type:String,
     enum:["wear","playable","equipment"],

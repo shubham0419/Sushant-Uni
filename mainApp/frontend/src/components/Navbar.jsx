@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Search, ShoppingCart, Menu, X, User, Heart, LogOut } from "lucide-react"
-import { useAuth } from "../context/AuthContext"
 import "./Navbar.css"
 
 export default function Navbar() {
@@ -13,7 +12,7 @@ export default function Navbar() {
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false)
   const [showUserDropdown, setShowUserDropdown] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const { user, logout } = useAuth()
+  const user = null;
   const navigate = useNavigate()
 
   const toggleMenu = () => {
@@ -37,7 +36,7 @@ export default function Navbar() {
   }
 
   const handleLogout = async () => {
-    await logout()
+    
     setShowUserDropdown(false)
   }
 

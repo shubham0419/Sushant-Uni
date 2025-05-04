@@ -1,12 +1,18 @@
+import { useEffect, useState } from "react"
 import "./pages.css"
+import { getAllProducts } from "../services/api/product";
 
 export default function Home() {
-  const featuredProducts = [
-    { id: 1, name: "Pro Runner Shoes", price: 129.99, category: "Running", image: "/api/placeholder/300/300" },
-    { id: 2, name: "Basketball Pro Jersey", price: 89.99, category: "Basketball", image: "/api/placeholder/300/300" },
-    { id: 3, name: "Tennis Racket Elite", price: 199.99, category: "Tennis", image: "/api/placeholder/300/300" },
-    { id: 4, name: "Football Training Kit", price: 149.99, category: "Football", image: "/api/placeholder/300/300" },
-  ]
+  const [allProducts,setAllproducts] = useState([]);
+
+  const fetchProduct = async()=>{
+    let products = await getAllProducts();
+    setAllproducts(products);
+  }
+
+  useEffect(()=>{
+    fetchProduct();
+  },[])
 
   return (
     <div className="page">
@@ -22,10 +28,10 @@ export default function Home() {
         <section className="featured-section">
           <h2>Featured Products</h2>
           <div className="product-grid">
-            {featuredProducts.map((product) => (
-              <div className="product-card" key={product.id}>
+            {allProducts.map((product) => (
+              <div className="product-card" key={product._id}>
                 <div className="product-image">
-                  <img src={product.image} alt={product.name} />
+                  <img src={product.image ?? "https://rakanonline.com/wp-content/uploads/2022/08/default-product-image.png"} alt={product.name} />
                 </div>
                 <div className="product-info">
                   <span className="product-category">{product.category}</span>

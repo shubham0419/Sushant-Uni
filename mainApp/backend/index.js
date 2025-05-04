@@ -20,7 +20,7 @@ app.get("/", (req, res) => {	});
 
 app.use("/auth",authRouter);
 app.use("/user",isLoggedIn,userRouter);
-app.use("/product",isLoggedIn,productRouter);
+app.use("/product",productRouter);
 
 
 app.listen(PORT, () => {

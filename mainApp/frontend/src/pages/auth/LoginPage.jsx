@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { useAuth } from "../../context/AuthContext"
 import { Eye, EyeOff, LogIn } from "lucide-react"
 import "./auth.css"
 
@@ -12,23 +11,13 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const { login } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError("")
     setIsSubmitting(true)
 
-    try {
-      const result = await login(email, password)
-      if (!result.success) {
-        setError(result.error)
-      }
-    } catch (err) {
-      setError("An unexpected error occurred. Please try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
+    
   }
 
   return (

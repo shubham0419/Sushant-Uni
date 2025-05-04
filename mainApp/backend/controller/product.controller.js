@@ -13,8 +13,7 @@ const allProducts = async(req,res)=>{
 
 const createProduct = async(req,res)=>{
   try {
-    const {name,productType,price,quantity,category,size,color,gender,wearType} = req.body;
-
+    const {name,productType,imageUrl,price,quantity,category,size,color,gender,wearType} = req.body;
     const product = await Product.create({
       name,
       price,
@@ -25,6 +24,7 @@ const createProduct = async(req,res)=>{
       wearType,
       category,
       size,
+      image:imageUrl,
       createdBy:req.user._id,
     });
 

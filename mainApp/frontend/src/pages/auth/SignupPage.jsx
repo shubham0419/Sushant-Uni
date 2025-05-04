@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { useAuth } from "../../context/AuthContext"
 import { Eye, EyeOff, UserPlus } from "lucide-react"
 import "./auth.css"
 
@@ -16,7 +15,6 @@ export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const { signup } = useAuth()
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -45,21 +43,7 @@ export default function SignupPage() {
     if (!validateForm()) return
 
     setIsSubmitting(true)
-    try {
-      const result = await signup({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-      })
-
-      if (!result.success) {
-        setError(result.error)
-      }
-    } catch (err) {
-      setError("An unexpected error occurred. Please try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
+    
   }
 
   return (
