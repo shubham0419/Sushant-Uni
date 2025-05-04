@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Eye, EyeOff, UserPlus } from "lucide-react"
 import "./auth.css"
+import { registerUser } from "../../services/api/auth"
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -14,7 +15,8 @@ export default function SignupPage() {
   })
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -39,11 +41,10 @@ export default function SignupPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError("")
-
-    if (!validateForm()) return
-
-    setIsSubmitting(true)
-    
+    if (!validateForm()) return;
+    let user = await registerUser(formData);
+    navigate("/");
+    setIsSubmitting(true);
   }
 
   return (
